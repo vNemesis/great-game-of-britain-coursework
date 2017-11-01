@@ -222,6 +222,7 @@
     <Compile Include="Assets\Environment\Water (Basic)\Scripts\WaterBasic.cs" />
     <Compile Include="Assets\HACK\Harman Sandbox\Scripts\CustomInspector.cs" />
     <Compile Include="Assets\HACK\Harman Sandbox\Scripts\DrawConnections.cs" />
+    <Compile Include="Assets\HACK\Harman Sandbox\Scripts\GameManager.cs" />
     <Compile Include="Assets\HACK\Harman Sandbox\Scripts\PlayerController.cs" />
     <Compile Include="Assets\HACK\Harman Sandbox\Scripts\SmallStation.cs" />
     <Compile Include="Assets\HACK\Harman Sandbox\Scripts\StationSyncScript.cs" />
