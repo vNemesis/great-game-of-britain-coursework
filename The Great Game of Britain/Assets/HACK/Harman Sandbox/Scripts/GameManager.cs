@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using UnityEngine.UI;
 using UnityEngine;
 
-public class GameManager : MonoBehaviour {
+public class GameManager : MonoBehaviour
+{
 
     private GameObject[] players;
     private GameObject start;
@@ -11,15 +12,18 @@ public class GameManager : MonoBehaviour {
 
     public Text playerDisplay;
     public Text turnDisplay;
+    public Text travelsDisplay;
 
     private float countdown = 1.0f;
-    private int playerNumberTurn = 1;
+    private int currentplayer = 0;
     private int turnCounter = 1;
+    private int numTravels = 3; //temp
 
     private bool opsCompleted;
 
+
     // Use this for initialization
-    void Start ()
+    void Start()
     {
         players = GameObject.FindGameObjectsWithTag("Player");
 
@@ -33,26 +37,28 @@ public class GameManager : MonoBehaviour {
             }
         }
 
-        players[0].GetComponent<PlayerController>().controllerEnabled = true;
 
-        playerDisplay.text = ("Player " + playerNumberTurn + "'s turn");
+
+        playerDisplay.text = ("Player " + (currentplayer + 1)  + "'s turn");
         turnDisplay.text = ("Turn: " + turnCounter);
+        
+
+        players[currentplayer].GetComponent<PlayerController>().setEnable(true);
+        players[currentplayer].GetComponent<PlayerController>().setTravels(numTravels);
     }
-	
-	// Update is called once per frame
-	void Update ()
+
+    // Update is called once per frame
+    void Update()
     {
+       
+        
+        
         // buffer to allow stations to spawn
         countdown -= 1.0f * Time.deltaTime;
-
         if (countdown <= 0.0f && !opsCompleted)
         {
-            //call method to draw connections
-            assignRoles();
             Debug.Log("Assigning Roles");
-
             playersToStart();
-
             // set true if all operations are complete
             opsCompleted = true;
         }
@@ -61,6 +67,14 @@ public class GameManager : MonoBehaviour {
             // end countdown
             countdown = 0.0f;
         }
+
+
+
+
+        playerDisplay.text = ("Player " + currentplayer + 1 + "'s turn");
+        turnDisplay.text = ("Turn: " + turnCounter);
+        travelsDisplay.text = ("Travels Remaining: " + numTravels); 
+
     }
 
     private void playersToStart()
@@ -73,6 +87,7 @@ public class GameManager : MonoBehaviour {
                 // change player parent to new station and update position
                 p.transform.parent = start.transform;
                 p.transform.localPosition = idlePos + (new Vector3(1.5f, 0.0f, 0.0f) * (start.transform.childCount - 2));
+
             }
             else
             {
@@ -83,62 +98,74 @@ public class GameManager : MonoBehaviour {
         }
     }
 
-    public void nextPlayerTurn()
-    {
-        if (playerNumberTurn == players.Length)
-        {
-            Debug.Log("Player number before " + playerNumberTurn);
+    //public void nextPlayerTurn()
+    //{
+    //    if (playerNumberTurn == players.Length)
+    //    {
+    //        Debug.Log("Player number before " + playerNumberTurn);
 
-            players[playerNumberTurn-1].GetComponent<PlayerController>().controllerEnabled = false;
-            playerNumberTurn = 1;
-            players[playerNumberTurn].GetComponent<PlayerController>().controllerEnabled = true;
-            turnCounter++;
+    //        players[playerNumberTurn - 1].GetComponent<PlayerController>().controllerEnabled = false;
+    //        playerNumberTurn = 1;
+    //        players[playerNumberTurn].GetComponent<PlayerController>().controllerEnabled = true;
+    //        turnCounter++;
 
-            Debug.Log("Player number after " + playerNumberTurn);
-            Debug.Log(players.Length);
-        }
-        else if (playerNumberTurn == players.Length - 1)
-        {
-            Debug.Log("Player number before " + playerNumberTurn);
+    //        Debug.Log("Player number after " + playerNumberTurn);
+    //        Debug.Log(players.Length);
+    //    }
+    //    else if (playerNumberTurn == players.Length - 1)
+    //    {
+    //        Debug.Log("Player number before " + playerNumberTurn);
 
-            players[playerNumberTurn].GetComponent<PlayerController>().controllerEnabled = false;
-            playerNumberTurn++;
-            players[playerNumberTurn-1].GetComponent<PlayerController>().controllerEnabled = true;
+    //        players[playerNumberTurn].GetComponent<PlayerController>().controllerEnabled = false;
+    //        playerNumberTurn++;
+    //        players[playerNumberTurn - 1].GetComponent<PlayerController>().controllerEnabled = true;
 
-            Debug.Log("Player number after " + playerNumberTurn);
-            Debug.Log(players.Length);
-        }
-        else
-        {
-            Debug.Log("Player number before " + playerNumberTurn);
+    //        Debug.Log("Player number after " + playerNumberTurn);
+    //        Debug.Log(players.Length);
+    //    }
+    //    else
+    //    {
+    //        Debug.Log("Player number before " + playerNumberTurn);
 
-            players[playerNumberTurn].GetComponent<PlayerController>().controllerEnabled = false;
-            playerNumberTurn++;
-            players[playerNumberTurn].GetComponent<PlayerController>().controllerEnabled = true;
+    //        players[playerNumberTurn].GetComponent<PlayerController>().controllerEnabled = false;
+    //        playerNumberTurn++;
+    //        players[playerNumberTurn].GetComponent<PlayerController>().controllerEnabled = true;
 
-            Debug.Log("Player number after " + playerNumberTurn);
-            Debug.Log(players.Length);
-        }
+    //        Debug.Log("Player number after " + playerNumberTurn);
+    //        Debug.Log(players.Length);
+    //    }
 
-        playerDisplay.text = ("Player " + playerNumberTurn + "'s turn");
-        turnDisplay.text = ("Turn: " + turnCounter);
-    }
+    //    playerDisplay.text = ("Player " + playerNumberTurn + "'s turn");
+    //    turnDisplay.text = ("Turn: " + turnCounter);
+    //}
 
     public void moveCurrentPlayer()
     {
-        players[playerNumberTurn-1].GetComponent<PlayerController>().moveToSelectedStation();
+        players[currentplayer].GetComponent<PlayerController>().moveToSelectedStation();
+        numTravels--;
     }
 
-
-    private void assignRoles()
+    private void nextPlayerTurn()
     {
-        // Set first player as the player whose turn it is
-        players[0].GetComponent<PlayerController>().controllerEnabled = true;
-
-        // for the rest of the players set them to be false if they weren't already
-        for (int i = 1; i < players.Length; i++)
+        
+        players[currentplayer].GetComponent<PlayerController>().setEnable(false); //disables current player
+        currentplayer++;
+        turnCounter++;
+        if (currentplayer>=players.Length)
         {
-            players[i].GetComponent<PlayerController>().controllerEnabled = false;
+            currentplayer = 0;
+           
         }
+
+        players[currentplayer].GetComponent<PlayerController>().setEnable(true); //enables the next player in turn 
+        numTravels = 3;                                                          //Dice method should be placed here
+        players[currentplayer].GetComponent<PlayerController>().setTravels(numTravels);
     }
 }
+
+
+
+
+
+
+

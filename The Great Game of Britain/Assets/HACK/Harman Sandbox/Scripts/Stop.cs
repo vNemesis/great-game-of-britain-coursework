@@ -22,6 +22,7 @@ public abstract class Stop : MonoBehaviour {
     private Dictionary<Stop, bool> LinesDrawn = new Dictionary<Stop, bool>();   //List of lines drawn between this stop and its connecting ones
 
     #endregion Contains fields for this class
+    protected List<GameObject> idlePlayers;
 
     // Used in Editor to update colour in edit mode when a value changes in the inspector, can ignore
     void OnValidate()
@@ -78,8 +79,27 @@ public abstract class Stop : MonoBehaviour {
             LinesDrawn.Add(s, false);
         }
 
+        
+
     }
 
+    public void Update()
+    {
+        if (idlePlayers.Capacity > 1)
+        {
+            float i = 0;
+            foreach (GameObject p in idlePlayers)
+            {
+                p.transform.position = p.transform.position + (new Vector3(i,0.0f,0.0f));
+                i = i + 1.5f;
+            }
+        }
+    }
+
+    public void addPlayer(GameObject player)
+    {
+        idlePlayers.Add(player);
+    }
 
     #region Getter Methods
 
