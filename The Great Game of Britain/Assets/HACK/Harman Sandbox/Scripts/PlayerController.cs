@@ -10,28 +10,17 @@ public class PlayerController : MonoBehaviour {
     private GameObject selected;                                // Currently selected object
     private Canvas mainCanvas;                                  // Main canvas in scene for UI
     private Vector3 idlePos = new Vector3(0.0f, 0.5f, 0.0f);    // On a stop what local position will the player be located at
+    public bool controllerEnabled { get; set; }
 
     #endregion Contains fields for this class
 
     // Use this for initialization
     void Start ()
     {
+        controllerEnabled = false;
+
         // Fetch main canvas from scene
         mainCanvas = GameObject.FindGameObjectWithTag("Main Canvas").GetComponent<Canvas>();
-
-        // find all stations
-        foreach (GameObject g in GameObject.FindGameObjectsWithTag("Station"))
-        {
-            // if the staion is the start
-            if (g.GetComponent<Stop>().checkIsStart())
-            {
-                // set the player's parent to be that station
-                gameObject.transform.SetParent(g.transform);
-
-                // reposition player to station
-                gameObject.transform.localPosition = idlePos;
-            }
-        }
 
 	}
 	
@@ -83,9 +72,20 @@ public class PlayerController : MonoBehaviour {
         // if selected is not empty
         if (selected != null)
         {
-            // change player parent to new station and update position
-            gameObject.transform.parent = selected.transform;
-            gameObject.transform.localPosition = idlePos;
+            if (selected.transform.childCount > 1)
+            {
+                // change player parent to new station and update position
+                gameObject.transform.parent = selected.transform;
+
+                // will adjust depending on how many children are attached to the station
+                gameObject.transform.localPosition = idlePos + ((new Vector3(1.5f, 0f, 0f)) * (selected.transform.childCount - 2));
+            }
+            else
+            {
+                // change player parent to new station and update position
+                gameObject.transform.parent = selected.transform;
+                gameObject.transform.localPosition = idlePos;
+            }
         }
         else
         {
