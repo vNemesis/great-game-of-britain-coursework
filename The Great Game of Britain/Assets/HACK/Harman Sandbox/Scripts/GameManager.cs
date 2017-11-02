@@ -142,9 +142,7 @@ public class GameManager : MonoBehaviour
     public void moveCurrentPlayer()
     {
         players[currentplayer].GetComponent<PlayerController>().moveToSelectedStation();
-        
-        numTravels = players[currentplayer].GetComponent<PlayerController>().getTravels();
-        
+        numTravels--;
     }
 
     private void nextPlayerTurn()

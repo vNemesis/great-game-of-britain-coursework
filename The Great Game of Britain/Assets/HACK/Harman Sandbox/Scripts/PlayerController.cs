@@ -51,7 +51,6 @@ public class PlayerController : MonoBehaviour {
                     // set selected to equal that station
                     selected = hitInfo.transform.parent.gameObject;
                     Debug.Log("Selected Station" + selected.GetComponent<Stop>().stopName);
-                    Debug.Log("num player: " + selected.transform.childCount);
 
                     //update UI text on main canvas to display selected stops name
                     mainCanvas.transform.Find("Text_Selection").GetComponent<Text>().text = ("Selected: " + selected.GetComponent<Stop>().stopName);
@@ -69,7 +68,6 @@ public class PlayerController : MonoBehaviour {
             }
         }
         movePlayer();
-
     }
 
     /// <summary>
@@ -84,34 +82,20 @@ public class PlayerController : MonoBehaviour {
             {
                 // change player parent to new station and update position
                 gameObject.transform.parent = selected.transform;
+                
                 // will adjust depending on how many children are attached to the station
-
-                float position = 0.0f;
-                for (int i = 0; i < 10 ; i++) {
-                    
-                    if (!Physics.CheckSphere(selected.transform.position + new Vector3(position,0.5f,0.0f), 0.5f)) //checks if the area is empty
-                    {                       
-                        targetPosition = selected.transform.position + new Vector3(position, 0.5f, 0.0f);
-                        decrementTravels();
-                        break;
-                    }
-                    position = position + 1.0f;
-                   
-                }
-                      
+                targetPosition = selected.transform.position + ((new Vector3(1.5f, 0.5f, 0f)) * (selected.transform.childCount - 2));
+                          
             }
             else
             {
                 // change player parent to new station and update position
                 gameObject.transform.parent = selected.transform;
-                targetPosition = selected.transform.position + idlePos;
-                decrementTravels();
-
-               
+                targetPosition = selected.transform.position + idlePos;               
             }
 
-            
-            
+            moveable = true;
+            travels--;
         }
         else
         {
@@ -139,29 +123,11 @@ public class PlayerController : MonoBehaviour {
 
     public void organise(GameObject station)
     {
-        float position = 0.0f;
-        for (int i = 0; i < station.transform.childCount; i++)
-        {
-            station.transform.GetChild(i).localPosition = station.transform.localPosition + (new Vector3(position, 0.0f, 0.0f));
-            position++;
-        }
+
     }
 
     public void setTravels(int travels)
     {
         this.travels = travels;
-    }
-
-    public int getTravels()
-    {
-        return travels;
-    }
-    public void decrementTravels()
-    {
-        moveable = true;
-        if (travels != 0)
-        {
-            travels--;
-        }
     }
 }
