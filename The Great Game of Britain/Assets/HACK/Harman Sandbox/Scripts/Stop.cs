@@ -83,23 +83,18 @@ public abstract class Stop : MonoBehaviour {
 
     }
 
-    public void Update()
-    {
-        if (idlePlayers.Capacity > 1)
-        {
-            float i = 0;
-            foreach (GameObject p in idlePlayers)
-            {
-                p.transform.position = p.transform.position + (new Vector3(i,0.0f,0.0f));
-                i = i + 1.5f;
-            }
-        }
-    }
-
-    public void addPlayer(GameObject player)
-    {
-        idlePlayers.Add(player);
-    }
+    //public void Update()
+    //{
+    //    if (gameObject.transform.childCount > 1 )
+    //    {
+    //        float position = 0.0f;
+    //        for (int i = 0; i < transform.childCount; i++)
+    //        {
+    //            transform.GetChild(i).localPosition = transform.localPosition + (new Vector3(position, 0.0f, 0.0f));
+    //            position++;
+    //        }
+    //    }
+    //}
 
     #region Getter Methods
 
