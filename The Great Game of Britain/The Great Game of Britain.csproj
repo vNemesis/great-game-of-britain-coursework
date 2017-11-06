@@ -80,6 +80,7 @@
   <ItemGroup>
     <Compile Include="Assets\Environment\Water (Basic)\Scripts\WaterBasic.cs" />
     <Compile Include="Assets\HACK\Harman Sandbox\Scripts\CustomInspector.cs" />
+    <Compile Include="Assets\HACK\Harman Sandbox\Scripts\Dice.cs" />
     <Compile Include="Assets\HACK\Harman Sandbox\Scripts\DrawConnections.cs" />
     <Compile Include="Assets\HACK\Harman Sandbox\Scripts\GameManager.cs" />
     <Compile Include="Assets\HACK\Harman Sandbox\Scripts\PlayerController.cs" />
