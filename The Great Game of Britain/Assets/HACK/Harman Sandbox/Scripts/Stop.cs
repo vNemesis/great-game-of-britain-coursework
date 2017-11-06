@@ -72,6 +72,7 @@ public abstract class Stop : MonoBehaviour {
 
         //Set material of this clone to the stops colour
         stop.GetComponent<Renderer>().material.color = setColour();
+      
 
         // Add each stop to the linesDrawn map and set there value to false
         foreach (Stop s in connectingStops)
@@ -133,4 +134,20 @@ public abstract class Stop : MonoBehaviour {
         Debug.Log("Button done something", gameObject);
     }
     #endregion
+
+    public bool isContains(GameObject stop)
+    {
+        foreach (Stop s in connectingStops)
+        {
+
+            Debug.Log(stop.name +" vs "+s.name);
+            if (s.name == stop.name)
+            {
+              
+                return true;
+            }
+        }
+
+        return false;
+    }
 }

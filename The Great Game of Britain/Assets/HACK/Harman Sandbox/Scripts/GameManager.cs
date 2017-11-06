@@ -17,7 +17,7 @@ public class GameManager : MonoBehaviour
     private float countdown = 1.0f;
     private int currentplayer = 0;
     private int turnCounter = 1;
-    private int numTravels = 3; //temp
+    private int numTravels = 3; 
 
     private bool opsCompleted;
 
@@ -37,22 +37,17 @@ public class GameManager : MonoBehaviour
             }
         }
 
-
-
         playerDisplay.text = ("Player " + (currentplayer + 1)  + "'s turn");
         turnDisplay.text = ("Turn: " + turnCounter);
         
-
-        players[currentplayer].GetComponent<PlayerController>().setEnable(true);
+        players[currentplayer].GetComponent<PlayerController>().setEnableAnimation(true);
+        players[currentplayer].GetComponent<PlayerController>().controllerEnabled = true;
         players[currentplayer].GetComponent<PlayerController>().setTravels(numTravels);
     }
 
     // Update is called once per frame
     void Update()
     {
-       
-        
-        
         // buffer to allow stations to spawn
         countdown -= 1.0f * Time.deltaTime;
         if (countdown <= 0.0f && !opsCompleted)
@@ -68,15 +63,14 @@ public class GameManager : MonoBehaviour
             countdown = 0.0f;
         }
 
-
-
-
-        playerDisplay.text = ("Player " + currentplayer + 1 + "'s turn");
+        playerDisplay.text = ("Player " + (currentplayer + 1) + "'s turn");
         turnDisplay.text = ("Turn: " + turnCounter);
         travelsDisplay.text = ("Travels Remaining: " + numTravels); 
-
     }
 
+    /// <summary>
+    /// moves all the players to the start position.
+    /// </summary>
     private void playersToStart()
     {
         // find all stations
@@ -87,7 +81,6 @@ public class GameManager : MonoBehaviour
                 // change player parent to new station and update position
                 p.transform.parent = start.transform;
                 p.transform.localPosition = idlePos + (new Vector3(1.5f, 0.0f, 0.0f) * (start.transform.childCount - 2));
-
             }
             else
             {
@@ -98,59 +91,22 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    //public void nextPlayerTurn()
-    //{
-    //    if (playerNumberTurn == players.Length)
-    //    {
-    //        Debug.Log("Player number before " + playerNumberTurn);
-
-    //        players[playerNumberTurn - 1].GetComponent<PlayerController>().controllerEnabled = false;
-    //        playerNumberTurn = 1;
-    //        players[playerNumberTurn].GetComponent<PlayerController>().controllerEnabled = true;
-    //        turnCounter++;
-
-    //        Debug.Log("Player number after " + playerNumberTurn);
-    //        Debug.Log(players.Length);
-    //    }
-    //    else if (playerNumberTurn == players.Length - 1)
-    //    {
-    //        Debug.Log("Player number before " + playerNumberTurn);
-
-    //        players[playerNumberTurn].GetComponent<PlayerController>().controllerEnabled = false;
-    //        playerNumberTurn++;
-    //        players[playerNumberTurn - 1].GetComponent<PlayerController>().controllerEnabled = true;
-
-    //        Debug.Log("Player number after " + playerNumberTurn);
-    //        Debug.Log(players.Length);
-    //    }
-    //    else
-    //    {
-    //        Debug.Log("Player number before " + playerNumberTurn);
-
-    //        players[playerNumberTurn].GetComponent<PlayerController>().controllerEnabled = false;
-    //        playerNumberTurn++;
-    //        players[playerNumberTurn].GetComponent<PlayerController>().controllerEnabled = true;
-
-    //        Debug.Log("Player number after " + playerNumberTurn);
-    //        Debug.Log(players.Length);
-    //    }
-
-    //    playerDisplay.text = ("Player " + playerNumberTurn + "'s turn");
-    //    turnDisplay.text = ("Turn: " + turnCounter);
-    //}
 
     public void moveCurrentPlayer()
     {
         players[currentplayer].GetComponent<PlayerController>().moveToSelectedStation();
-        
-        numTravels = players[currentplayer].GetComponent<PlayerController>().getTravels();
-        
+        numTravels = players[currentplayer].GetComponent<PlayerController>().getTravels();     
     }
 
+    /// <summary>
+    /// updates which player is in control, enables the next player and disables current player when called.
+    /// increments the turnCounter and sets the number of travels for that player.
+    /// </summary>
     private void nextPlayerTurn()
     {
         
-        players[currentplayer].GetComponent<PlayerController>().setEnable(false); //disables current player
+        players[currentplayer].GetComponent<PlayerController>().setEnableAnimation(false); //disables current player
+        players[currentplayer].GetComponent<PlayerController>().controllerEnabled = false;
         currentplayer++;
         turnCounter++;
         if (currentplayer>=players.Length)
@@ -159,8 +115,9 @@ public class GameManager : MonoBehaviour
            
         }
 
-        players[currentplayer].GetComponent<PlayerController>().setEnable(true); //enables the next player in turn 
-        numTravels = 3;                                                          //Dice method should be placed here
+        players[currentplayer].GetComponent<PlayerController>().setEnableAnimation(true);
+        players[currentplayer].GetComponent<PlayerController>().controllerEnabled = true;    //enables the next player in turn 
+        numTravels = 3;                                                                     //Dice method should be placed here
         players[currentplayer].GetComponent<PlayerController>().setTravels(numTravels);
     }
 }
