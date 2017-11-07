@@ -1,0 +1,14 @@
+﻿<Properties StartupItem="Assembly-CSharp.csproj">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\HACK\Harman Sandbox\Scripts\Dice.cs">
+    <Files>
+      <File FileName="Assets\HACK\Harman Sandbox\Scripts\Dice.cs" Line="10" Column="2" />
+      <File FileName="Assets\HACK\Harman Sandbox\Scripts\GameManager.cs" Line="162" Column="100" />
+      <File FileName="Assets\HACK\Harman Sandbox\Scripts\PlayerController.cs" Line="1" Column="1" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+</Properties>
