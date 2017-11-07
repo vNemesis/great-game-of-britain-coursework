@@ -48,7 +48,8 @@ public class GameManager : MonoBehaviour {
         if (countdown <= 0.0f && !opsCompleted)
         {
             //call method to draw connections
-            assignRoles();
+            // Set first player as the player whose turn it is
+            players[0].GetComponent<PlayerController>().controllerEnabled = true;
             Debug.Log("Assigning Roles");
 
             playersToStart();
@@ -127,18 +128,5 @@ public class GameManager : MonoBehaviour {
     public void moveCurrentPlayer()
     {
         players[playerNumberTurn-1].GetComponent<PlayerController>().moveToSelectedStation();
-    }
-
-
-    private void assignRoles()
-    {
-        // Set first player as the player whose turn it is
-        players[0].GetComponent<PlayerController>().controllerEnabled = true;
-
-        // for the rest of the players set them to be false if they weren't already
-        for (int i = 1; i < players.Length; i++)
-        {
-            players[i].GetComponent<PlayerController>().controllerEnabled = false;
-        }
     }
 }
