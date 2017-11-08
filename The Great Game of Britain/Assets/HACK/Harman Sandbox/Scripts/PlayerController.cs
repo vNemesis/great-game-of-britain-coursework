@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class PlayerController : MonoBehaviour {
+public class PlayerController : MonoBehaviour
+{
 
     #region Fields
 
@@ -22,22 +23,23 @@ public class PlayerController : MonoBehaviour {
     public Text movePermisson;
 
     // Use this for initialization
-    void Start ()
+    void Start()
     {
         gameObject.GetComponentInChildren<Animator>().enabled = false;
-        controllerEnabled = false;     
+        controllerEnabled = false;
         speed = 10;
         moveable = false;
         // Fetch main canvas from scene
         mainCanvas = GameObject.FindGameObjectWithTag("Main Canvas").GetComponent<Canvas>();
-        
 
-	} 
-	
-	// Update is called once per frame
-	void Update ()
+
+    }
+
+    // Update is called once per frame
+    void Update()
     {
-        if (controllerEnabled) {
+        if (controllerEnabled)
+        {
             currentStation = transform.GetComponentInParent<SmallStation>().gameObject;
             Debug.Log(currentStation.ToString());
             // If left-mouse is pressed and currently not hovering over a UI element
@@ -61,11 +63,11 @@ public class PlayerController : MonoBehaviour {
 
                         if (currentStation.GetComponent<SmallStation>().isContains(selected))
                         {
-                            movePermisson.text = ("accessible: Yes");
+                            movePermisson.text = ("Accessible: Yes");
                         }
                         else
                         {
-                            movePermisson.text = ("accessible: No");
+                            movePermisson.text = ("Accessible: No");
                         }
 
                         Debug.Log("Selected Station" + selected.GetComponent<Stop>().stopName);
@@ -85,9 +87,9 @@ public class PlayerController : MonoBehaviour {
                 {
                     Debug.Log("No hit");
                 }
-            }  
+            }
         }
-        
+
         movePlayer();
     }
 
@@ -95,9 +97,9 @@ public class PlayerController : MonoBehaviour {
     /// Moves player to selected station, checks station children before entering.
     /// </summary>
     public void moveToSelectedStation()
-    {   
+    {
         // if selected is not empty
-        if (selected != null && travels !=0 && controllerEnabled)
+        if (selected != null && travels != 0 && controllerEnabled)
         {
             if (currentStation.GetComponent<SmallStation>().isContains(selected))
             {
@@ -126,8 +128,8 @@ public class PlayerController : MonoBehaviour {
                     targetPosition = selected.transform.position + idlePos;
                     decrementTravels();
                 }
-            }            
-        }        
+            }
+        }
     }
 
     /// <summary>
@@ -184,5 +186,5 @@ public class PlayerController : MonoBehaviour {
         }
     }
 
-    
+
 }

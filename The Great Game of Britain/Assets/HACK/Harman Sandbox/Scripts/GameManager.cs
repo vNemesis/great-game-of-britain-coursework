@@ -9,6 +9,7 @@ public class GameManager : MonoBehaviour
     private GameObject[] players;
     private GameObject start;
     private Vector3 idlePos = new Vector3(0.0f, 0.5f, 0.0f);    // On a stop what local position will the player be located at
+    private Canvas mainCanvas;
 
     public Text playerDisplay;
     public Text turnDisplay;
@@ -17,7 +18,8 @@ public class GameManager : MonoBehaviour
     private float countdown = 1.0f;
     private int currentplayer = 0;
     private int turnCounter = 1;
-    private int numTravels = 3; 
+    private int numTravels = 0;
+    private bool rolled;
 
     private bool opsCompleted;
 
@@ -25,6 +27,7 @@ public class GameManager : MonoBehaviour
     // Use this for initialization
     void Start()
     {
+        rolled = false;
         players = GameObject.FindGameObjectsWithTag("Player");
 
         Debug.Log("Found " + players.Length + " Player(s)");
@@ -37,12 +40,14 @@ public class GameManager : MonoBehaviour
             }
         }
 
-        playerDisplay.text = ("Player " + (currentplayer + 1)  + "'s turn");
+        playerDisplay.text = ("Player " + (currentplayer + 1) + "'s turn");
         turnDisplay.text = ("Turn: " + turnCounter);
-        
+
         players[currentplayer].GetComponent<PlayerController>().setEnableAnimation(true);
         players[currentplayer].GetComponent<PlayerController>().controllerEnabled = true;
         players[currentplayer].GetComponent<PlayerController>().setTravels(numTravels);
+
+        mainCanvas = GameObject.FindGameObjectWithTag("Main Canvas").GetComponent<Canvas>();
     }
 
     // Update is called once per frame
@@ -65,7 +70,7 @@ public class GameManager : MonoBehaviour
 
         playerDisplay.text = ("Player " + (currentplayer + 1) + "'s turn");
         turnDisplay.text = ("Turn: " + turnCounter);
-        travelsDisplay.text = ("Travels Remaining: " + numTravels); 
+        travelsDisplay.text = ("Travels Remaining: " + numTravels);
     }
 
     /// <summary>
@@ -95,13 +100,9 @@ public class GameManager : MonoBehaviour
     public void moveCurrentPlayer()
     {
         players[currentplayer].GetComponent<PlayerController>().moveToSelectedStation();
-        numTravels = players[currentplayer].GetComponent<PlayerController>().getTravels();     
+        numTravels = players[currentplayer].GetComponent<PlayerController>().getTravels();
     }
 
-    /// <summary>
-    /// updates which player is in control, enables the next player and disables current player when called.
-    /// increments the turnCounter and sets the number of travels for that player.
-    /// </summary>
     private void nextPlayerTurn()
     {
         
@@ -115,11 +116,22 @@ public class GameManager : MonoBehaviour
            
         }
 
-        players[currentplayer].GetComponent<PlayerController>().setEnableAnimation(true);
-        players[currentplayer].GetComponent<PlayerController>().controllerEnabled = true;    //enables the next player in turn 
-        numTravels = 3;                                                                     //Dice method should be placed here
-        players[currentplayer].GetComponent<PlayerController>().setTravels(numTravels);
-    }
+        players[currentplayer].GetComponent<PlayerController>().setEnableAnimation(true); //enables the next player in turn 
+        players[currentplayer].GetComponent<PlayerController>().controllerEnabled = true;       
+        rolled =false;
+        mainCanvas.transform.Find("Text_Selection").GetComponent<Text>().text = ("Selected: " );
+        mainCanvas.transform.Find("Text_MovePermission").GetComponent<Text>().text = ("Accessible: ");
+        numTravels = 0;
+    }   
+
+	public void rollDice(){
+		if (!rolled) {
+			var randomInt = Random.Range (1, 7);
+			numTravels = randomInt;
+            players[currentplayer].GetComponent<PlayerController>().setTravels(numTravels);
+        } 
+		rolled = true;
+	}
 }
 
 
