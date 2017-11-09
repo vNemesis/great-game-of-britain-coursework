@@ -11,6 +11,8 @@ public class Test : MonoBehaviour {
 
         this.gameObject.GetComponent<Light>().range = lightRange;
 		
+	Debug.Log("testing git");
+		
 	}
 	
 	// Update is called once per frame
