@@ -55,9 +55,38 @@
     <Reference Include="UnityEngine">
       <HintPath>Library\UnityAssemblies\UnityEngine.dll</HintPath>
     </Reference>
+    <Reference Include="UnityEngine.UI">
+      <HintPath>Library\UnityAssemblies\UnityEngine.UI.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.Networking">
+      <HintPath>Library\UnityAssemblies\UnityEngine.Networking.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.TestRunner">
+      <HintPath>Library\UnityAssemblies\UnityEngine.TestRunner.dll</HintPath>
+    </Reference>
+    <Reference Include="nunit.framework">
+      <HintPath>Library\UnityAssemblies\nunit.framework.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.Timeline">
+      <HintPath>Library\UnityAssemblies\UnityEngine.Timeline.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.Analytics">
+      <HintPath>Library\UnityAssemblies\UnityEngine.Analytics.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.HoloLens">
+      <HintPath>Library\UnityAssemblies\UnityEngine.HoloLens.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Environment\Water (Basic)\Scripts\WaterBasic.cs" />
+    <Compile Include="Assets\HACK\Harman Sandbox\Scripts\CustomInspector.cs" />
+    <Compile Include="Assets\HACK\Harman Sandbox\Scripts\Dice.cs" />
+    <Compile Include="Assets\HACK\Harman Sandbox\Scripts\DrawConnections.cs" />
+    <Compile Include="Assets\HACK\Harman Sandbox\Scripts\GameManager.cs" />
+    <Compile Include="Assets\HACK\Harman Sandbox\Scripts\PlayerController.cs" />
+    <Compile Include="Assets\HACK\Harman Sandbox\Scripts\SmallStation.cs" />
+    <Compile Include="Assets\HACK\Harman Sandbox\Scripts\StationSyncScript.cs" />
+    <Compile Include="Assets\HACK\Harman Sandbox\Scripts\Stop.cs" />
     <Compile Include="Assets\Scripts\Test.cs" />
   </ItemGroup>
   <ItemGroup>
