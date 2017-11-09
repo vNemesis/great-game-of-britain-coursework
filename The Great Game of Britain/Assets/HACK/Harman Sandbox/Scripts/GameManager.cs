@@ -1,19 +1,20 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine.UI;
-using UnityEngine;
+﻿    using System.Collections;
+    using System.Collections.Generic;
+    using UnityEngine.UI;
+    using UnityEngine;
 
-/// <summary>
-/// ------------------------------------------------------------------------------------
-/// 
-/// Authors : Harman Uppal, Tariq
-/// 
-/// ------------------------------------------------------------------------------------
-/// </summary>
+    /// <summary>
+    /// ------------------------------------------------------------------------------------
+    /// 
+    /// Authors : Harman Uppal, Tariq
+    /// 
+    /// ------------------------------------------------------------------------------------
+    /// </summary>
 
-public class GameManager : MonoBehaviour
-{
+    public class GameManager : MonoBehaviour
+    {
 
+    #region Fields
     private GameObject[] players;
     private GameObject start;
     private Vector3 idlePos = new Vector3(0.0f, 0.5f, 0.0f);    // On a stop what local position will the player be located at
@@ -30,6 +31,7 @@ public class GameManager : MonoBehaviour
     private bool rolled;
 
     private bool opsCompleted;
+    #endregion
 
 
     // Use this for initialization
@@ -130,21 +132,17 @@ public class GameManager : MonoBehaviour
         mainCanvas.transform.Find("Text_Selection").GetComponent<Text>().text = ("Selected: " );
         mainCanvas.transform.Find("Text_MovePermission").GetComponent<Text>().text = ("Accessible: ");
         numTravels = 0;
-    }   
+    }
 
-	public void rollDice(){
-		if (!rolled) {
-			var randomInt = Random.Range (1, 7);
-			numTravels = randomInt;
-            players[currentplayer].GetComponent<PlayerController>().setTravels(numTravels);
-        } 
-		rolled = true;
-	}
-}
+        public void rollDice()
+        {
+            if (!rolled)
+            {
+                var randomInt = Random.Range(1, 7);
+                numTravels = randomInt;
+                players[currentplayer].GetComponent<PlayerController>().setTravels(numTravels);
+            }
 
-
-
-
-
-
-
+            rolled = true;
+        }
+    }
