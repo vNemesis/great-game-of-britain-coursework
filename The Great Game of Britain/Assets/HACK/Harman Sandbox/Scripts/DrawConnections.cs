@@ -2,6 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// ------------------------------------------------------------------------------------
+/// 
+/// Authors : Harman Uppal
+/// 
+/// ------------------------------------------------------------------------------------
+/// </summary>
+
 public class DrawConnections : MonoBehaviour {
 
     #region Fields
