@@ -228,6 +228,7 @@
     <Compile Include="Assets\Environment\Water\Water\Scripts\Water.cs" />
     <Compile Include="Assets\Environment\Water\Water\Scripts\WaterBase.cs" />
     <Compile Include="Assets\Environment\Water\Water\Scripts\WaterTile.cs" />
+    <Compile Include="Assets\HACK\Harman Sandbox\Scripts\CameraController.cs" />
     <Compile Include="Assets\HACK\Harman Sandbox\Scripts\CustomInspector.cs" />
     <Compile Include="Assets\HACK\Harman Sandbox\Scripts\Dice.cs" />
     <Compile Include="Assets\HACK\Harman Sandbox\Scripts\DrawConnections.cs" />
