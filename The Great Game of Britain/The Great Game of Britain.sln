@@ -1,7 +1,7 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2017
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "The Great Game of Britain", "The Great Game of Britain.csproj", "{070A1615-B82F-B808-5003-61AB38EF9FED}"
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "The Great Game of Britain", "Assembly-CSharp.csproj", "{76F88F51-BD3C-8B3B-3CA3-E644C739660F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -9,12 +9,15 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{070A1615-B82F-B808-5003-61AB38EF9FED}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{070A1615-B82F-B808-5003-61AB38EF9FED}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{070A1615-B82F-B808-5003-61AB38EF9FED}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{070A1615-B82F-B808-5003-61AB38EF9FED}.Release|Any CPU.Build.0 = Release|Any CPU
+		{76F88F51-BD3C-8B3B-3CA3-E644C739660F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{76F88F51-BD3C-8B3B-3CA3-E644C739660F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{76F88F51-BD3C-8B3B-3CA3-E644C739660F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{76F88F51-BD3C-8B3B-3CA3-E644C739660F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(MonoDevelopProperties) = preSolution
+		StartupItem = Assembly-CSharp.csproj
 	EndGlobalSection
 EndGlobal
