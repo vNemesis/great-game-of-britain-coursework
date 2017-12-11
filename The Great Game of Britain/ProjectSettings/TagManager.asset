@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Main Canvas
   - Station
+  - Manager
   layers:
   - Default
   - TransparentFX
@@ -17,7 +18,7 @@ TagManager:
   - 
   - Lines
   - PostProcessing
-  - 
+  - MM_Text
   - 
   - 
   - 
@@ -40,6 +41,9 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: StationText
+    uniqueID: 587581455
+    locked: 0
   - name: ConnectionLines
     uniqueID: 3755555497
     locked: 0

@@ -2,23 +2,25 @@
     using System.Collections.Generic;
     using UnityEngine.UI;
     using UnityEngine;
+using UnityEngine.SceneManagement;
 
-    /// <summary>
-    /// ------------------------------------------------------------------------------------
-    /// 
-    /// Authors : Harman Uppal, Tariq
-    /// 
-    /// ------------------------------------------------------------------------------------
-    /// </summary>
+/// <summary>
+/// ------------------------------------------------------------------------------------
+/// 
+/// Authors : Harman Uppal, Tariq
+/// 
+/// ------------------------------------------------------------------------------------
+/// </summary>
 
-    public class GameManager : MonoBehaviour
+public class GameManager : MonoBehaviour
     {
 
     #region Fields
-    private GameObject[] players;
+    private GameObject[] players = new GameObject[4];
     private GameObject start;
     private Vector3 idlePos = new Vector3(0.0f, 0.5f, 0.0f);    // On a stop what local position will the player be located at
     private Canvas mainCanvas;
+    public GameObject playerPrefab;
 
     public Text playerDisplay;
     public Text turnDisplay;
@@ -31,16 +33,35 @@
     private bool rolled;
 
     private bool opsCompleted;
+
+    // Managers
+    private GameObject cardManager;
     #endregion
 
 
     // Use this for initialization
     void Start()
     {
-        rolled = false;
-        players = GameObject.FindGameObjectsWithTag("Player");
+        // Find managers
+        cardManager = GameObject.Find("Card Manager");
 
-        Debug.Log("Found " + players.Length + " Player(s)");
+
+        rolled = false;
+
+        int numOfPlayers = 2;
+        if (GameObject.Find("Game Setup Manager") != null)
+        {
+            numOfPlayers = GameObject.Find("Game Setup Manager").GetComponent<GameSetUp>().getNumOfPlayers();
+        }
+
+        Debug.Log("Number of players set: " + numOfPlayers);
+
+        for (int i = 0; i < numOfPlayers; i++)
+        {
+            GameObject newPlayer = Instantiate(playerPrefab);
+        }
+
+        players = GameObject.FindGameObjectsWithTag("Player");
 
         foreach (GameObject g in GameObject.FindGameObjectsWithTag("Station"))
         {
@@ -88,7 +109,7 @@
     /// </summary>
     private void playersToStart()
     {
-        // find all stations
+        // find all players
         foreach (GameObject p in players)
         {
             if (start.transform.childCount > 1)
@@ -148,5 +169,11 @@
 
         public void endGame()
         {
+            SceneManager.LoadScene("EndGame_Scene");
+        }
+
+        public void drawHazardCard()
+        {
+            //cardManager.GetComponent<Card>().drawCard();
         }
     }

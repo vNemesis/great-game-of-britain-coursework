@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 /// <summary>
 /// ------------------------------------------------------------------------------------
@@ -77,6 +78,8 @@ public abstract class Stop : MonoBehaviour {
 
         // Log creation
         Debug.Log("Making station: " + stopName);
+
+        gameObject.GetComponentInChildren<Text>().text = stopName;
 
         //Set material of this clone to the stops colour
         stop.GetComponent<Renderer>().material.color = setColour();
