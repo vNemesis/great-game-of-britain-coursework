@@ -122,7 +122,7 @@ GameObject:
   - component: {fileID: 80139649}
   - component: {fileID: 80139648}
   m_Layer: 0
-  m_Name: Sun (DL)
+  m_Name: Sun (Directional Light)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1424,8 +1424,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1155055464}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 744.8589, y: -256.26733, z: -1062.7952}
+  m_LocalRotation: {x: -0.06529061, y: 0.266987, z: 0.018133009, w: 0.96131486}
+  m_LocalPosition: {x: 368.36273, y: -310.32584, z: -703.6549}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1899374865}
@@ -2428,7 +2428,7 @@ RectTransform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2088364048}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 482, y: 267.5, z: 0}
+  m_LocalPosition: {x: 483.5, y: 267.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 179078125}
