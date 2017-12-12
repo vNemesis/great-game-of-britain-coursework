@@ -27,7 +27,8 @@ public abstract class Stop : MonoBehaviour {
     public bool isStart;
     public string stopName;                                                     // Name of the stop
     public GameObject stopGO;                                                   // GameObject spawned when stop is created
-
+	private bool ishighlighted;
+	public Renderer rend;
     private Dictionary<Stop, bool> LinesDrawn = new Dictionary<Stop, bool>();   //List of lines drawn between this stop and its connecting ones
 
     #endregion Contains fields for this class
@@ -90,21 +91,10 @@ public abstract class Stop : MonoBehaviour {
             LinesDrawn.Add(s, false);
         }
 
-        
+
 
     }
 
-    public bool isContains(GameObject stop)
-    {
-        foreach (Stop s in connectingStops)
-        {
-            if(s.name == stop.name)
-            {
-                return true;
-            }
-        }
-        return false;
-    }
 
     #region Getter Methods
 
@@ -143,4 +133,101 @@ public abstract class Stop : MonoBehaviour {
         Debug.Log("Button done something", gameObject);
     }
     #endregion
+	
+		/// <summary>
+	/// checks if the current stop is highlighted
+	/// </summary>
+	/// <returns>true or false</returns>
+	public bool getIsHighlighted()
+	{
+		return ishighlighted;
+	}
+
+	/// <summary>
+	/// Set  ishighlighted to true or false while changing the stop's outline weight accordingly
+	/// </summary>
+	public void setIshiglighted(bool b)
+	{
+
+		if (b == true) {
+			rend.material.SetFloat("_OutlineWeight",1.8f);
+			ishighlighted = true;
+
+		} else {
+			rend.material.SetFloat("_OutlineWeight",1.0f);
+			ishighlighted = false;
+		}
+	}
+
+	/// <summary>
+	/// Checks wheter a stop is within it's connected stops
+	/// <returns>
+	/// true or false
+	/// </returns>
+	/// </summary>
+	public bool isContains(GameObject stop)
+	{
+		foreach (Stop s in connectingStops)
+		{
+			if(s.name == stop.name)
+			{
+				return true;
+			}
+		}
+		return false;
+	}
+
+	/// <summary>
+	/// Compares a stop colour to another stop colour
+	/// <returns>
+	/// true or false
+	/// </returns>
+	/// </summary>
+	public bool isSameColour(GameObject astop)
+	{
+		if(currentColour == astop.GetComponent<SmallStation>().currentColour|| astop.GetComponent<SmallStation>().currentColour == colourName.Black)
+		{
+			return true;
+		}
+		return false;
+	}
+
+
+	#region Getter Methods
+
+	public Stop[] getConnectedStations()
+	{
+		return connectingStops;
+	}
+
+	public Dictionary<Stop, bool> getLinesDrawn()
+	{
+		return LinesDrawn;
+	}
+
+	public Color getStopColour()
+	{
+		return stopColour;
+	}
+
+	public bool checkIsStart()
+	{
+		return isStart;
+	}
+	#endregion
+
+	#region Setter Methods
+	public void setLinesDrawn(Stop stopToSet, bool state)
+	{
+		LinesDrawn[stopToSet] = state;
+	}
+	#endregion
+
+	#region Debug Methods
+
+	public void testMethod()
+	{
+		Debug.Log("Button done something", gameObject);
+	}
+	#endregion
 }
