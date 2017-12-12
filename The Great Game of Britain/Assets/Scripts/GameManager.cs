@@ -1,7 +1,7 @@
-﻿    using System.Collections;
-    using System.Collections.Generic;
-    using UnityEngine.UI;
-    using UnityEngine;
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine.UI;
+using UnityEngine;
 using UnityEngine.SceneManagement;
 
 /// <summary>
@@ -31,6 +31,7 @@ public class GameManager : MonoBehaviour
     private int turnCounter = 1;
     private int numTravels = 0;
     private bool rolled;
+    private int numOfPlayers = 2;
 
     private bool opsCompleted;
 
@@ -45,16 +46,12 @@ public class GameManager : MonoBehaviour
         // Find managers
         cardManager = GameObject.Find("Card Manager");
 
-
-        rolled = false;
-
-        int numOfPlayers = 2;
         if (GameObject.Find("Game Setup Manager") != null)
         {
             numOfPlayers = GameObject.Find("Game Setup Manager").GetComponent<GameSetUp>().getNumOfPlayers();
         }
 
-        Debug.Log("Number of players set: " + numOfPlayers);
+        //Debug.Log("Number of players set: " + numOfPlayers);
 
         for (int i = 0; i < numOfPlayers; i++)
         {
@@ -74,9 +71,7 @@ public class GameManager : MonoBehaviour
         playerDisplay.text = ("Player " + (currentplayer + 1) + "'s turn");
         turnDisplay.text = ("Turn: " + turnCounter);
 
-        players[currentplayer].GetComponent<PlayerController>().setEnableAnimation(true);
-        players[currentplayer].GetComponent<PlayerController>().controllerEnabled = true;
-        players[currentplayer].GetComponent<PlayerController>().setTravels(numTravels);
+        Debug.LogWarning(players[currentplayer]);
 
         mainCanvas = GameObject.FindGameObjectWithTag("Main Canvas").GetComponent<Canvas>();
     }
@@ -88,8 +83,14 @@ public class GameManager : MonoBehaviour
         countdown -= 1.0f * Time.deltaTime;
         if (countdown <= 0.0f && !opsCompleted)
         {
-            Debug.Log("Assigning Roles");
+            //Debug.Log("Assigning Roles");
             playersToStart();
+
+            rolled = false;
+            players[currentplayer].GetComponent<PlayerController>().setEnableAnimation(true);
+            players[currentplayer].GetComponent<PlayerController>().controllerEnabled = true;
+            players[currentplayer].GetComponent<PlayerController>().setTravels(numTravels);
+
             // set true if all operations are complete
             opsCompleted = true;
         }
@@ -101,7 +102,10 @@ public class GameManager : MonoBehaviour
 
         playerDisplay.text = ("Player " + (currentplayer + 1) + "'s turn");
         turnDisplay.text = ("Turn: " + turnCounter);
-        travelsDisplay.text = ("Travels Remaining: " + numTravels);
+		
+		//check the players travel allowance and updates
+		travelsDisplay.text = ("Travels Remaining: " + players[currentplayer].GetComponent<PlayerController>().getTravels());
+		
     }
 
     /// <summary>
@@ -130,8 +134,9 @@ public class GameManager : MonoBehaviour
 
     public void moveCurrentPlayer()
     {
-        players[currentplayer].GetComponent<PlayerController>().moveToSelectedStation();
-        numTravels = players[currentplayer].GetComponent<PlayerController>().getTravels();
+		players [currentplayer].GetComponent<PlayerController> ().commitMoves ();	
+		players [currentplayer].GetComponent<PlayerController> ().moveToSelectedStations();
+		numTravels = players[currentplayer].GetComponent<PlayerController>().getTravels();
     }
 
     private void nextPlayerTurn()
@@ -139,9 +144,11 @@ public class GameManager : MonoBehaviour
         
         players[currentplayer].GetComponent<PlayerController>().setEnableAnimation(false); //disables current player
         players[currentplayer].GetComponent<PlayerController>().controllerEnabled = false;
+		players [currentplayer].GetComponent<PlayerController> ().setisfirststation (true);
+		players [currentplayer].GetComponent<PlayerController> ().clearSelectedStations();
         currentplayer++;
         turnCounter++;
-        if (currentplayer>=players.Length)
+        if (currentplayer>=numOfPlayers)
         {
             currentplayer = 0;
            
@@ -162,6 +169,8 @@ public class GameManager : MonoBehaviour
                 var randomInt = Random.Range(1, 7);
                 numTravels = randomInt;
                 players[currentplayer].GetComponent<PlayerController>().setTravels(numTravels);
+				players[currentplayer].GetComponent<PlayerController>().setSelectedStationsSize(numTravels);
+				players [currentplayer].GetComponent<PlayerController> ().rolledDice = true;
             }
 
             rolled = true;
