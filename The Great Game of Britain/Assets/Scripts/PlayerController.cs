@@ -44,6 +44,8 @@ public class PlayerController : MonoBehaviour
 		// Fetch main canvas from scene
 		mainCanvas = GameObject.FindGameObjectWithTag ("Main Canvas").GetComponent<Canvas> ();
 
+        movePermisson = GameObject.Find("Text_MovePermission").GetComponent<Text>();
+
 
 	}
 
@@ -75,6 +77,9 @@ public class PlayerController : MonoBehaviour
 
 				// if it hit something
 				if (hit) {
+
+                    Debug.Log("HIT!");
+
 					// if it hit a station and the player has rolled a dice
 					if (hitInfo.transform.parent.gameObject.tag == "Station" && rolledDice) {
 						// set selected to equal that station
@@ -153,7 +158,7 @@ public class PlayerController : MonoBehaviour
 							movePlayer();
 							break;
 						}
-						position = position + 1.0f;
+						position = position + 5.0f;
 					}
 				} else {
 					// change player parent to new station and update position
