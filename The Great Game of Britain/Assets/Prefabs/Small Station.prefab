@@ -57,7 +57,11 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
+<<<<<<< HEAD
   - {fileID: 2100000, guid: e2d97ec567634154b8398439a77502c8, type: 2}
+=======
+  - {fileID: 2100000, guid: 44fdd7664bb73444dafbe7a41617ca79, type: 2}
+>>>>>>> MVP-Harman
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
