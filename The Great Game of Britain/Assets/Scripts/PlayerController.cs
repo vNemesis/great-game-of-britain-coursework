@@ -31,20 +31,27 @@ public class PlayerController : MonoBehaviour
 	public Text movePermisson;
 	private Stack<GameObject> selectedStations;
 	public Stack<GameObject> commitedMoves;
-	public int count=0;  
+	public int count=0;
+
+    private AudioSource selectSound;            // Source used for selection
+    private AudioSource moveSound;              // Source used for movement
 
 	// Use this for initialization
 	void Start ()
 	{
 		gameObject.GetComponentInChildren<Animator> ().enabled = false;
 		controllerEnabled = false;
-		speed = 10;
+		speed = 50;
 		moveable = false;
 		rolledDice = false;
 		// Fetch main canvas from scene
 		mainCanvas = GameObject.FindGameObjectWithTag ("Main Canvas").GetComponent<Canvas> ();
 
         movePermisson = GameObject.Find("Text_MovePermission").GetComponent<Text>();
+
+        selectSound = GameObject.Find("UIAudio").GetComponent<AudioSource>();
+
+        moveSound = GameObject.Find("UIAudioMovement").GetComponent<AudioSource>();
 
 
 	}
@@ -103,6 +110,7 @@ public class PlayerController : MonoBehaviour
 							if (selected.GetComponent<SmallStation> ().getIsHighlighted () == false && travels!=0) {
 								addToSelectedStations (selected);
 								currentStation = selected;
+                                selectSound.Play();
 								Debug.Log ("current station is: "+currentStation.name);
 							} else {
 								removeFronSelectedStations(selected);
@@ -180,6 +188,7 @@ public class PlayerController : MonoBehaviour
 	{
 		if (moveable) {
 			gameObject.transform.position = Vector3.MoveTowards (transform.position, targetPosition, speed * Time.deltaTime);//moves towards position of station
+
 			if (targetPosition == transform.position) {//once player has reached station moveable is turned false to stop movement
 				moveable = false;
 
@@ -189,13 +198,13 @@ public class PlayerController : MonoBehaviour
 					targetPosition = station.transform.position + idlePos;
 
 					moveable=true;
-					movePlayer ();
+					
 				}
 				//no more moves is you have moved
 				else if(commitedMoves.Count ==0)
 				{
 					clearSelectedStations ();
-					travels = 0;
+				
 				}
 	
 			}

@@ -22,7 +22,7 @@ GameObject:
   - component: {fileID: 120492609657047058}
   m_Layer: 8
   m_Name: ConnectionMarker
-  m_TagString: Untagged
+  m_TagString: Lines
   m_Icon: {fileID: -1577725955494882426, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

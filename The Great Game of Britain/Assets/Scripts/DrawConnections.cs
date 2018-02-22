@@ -13,18 +13,22 @@ using UnityEngine;
 public class DrawConnections : MonoBehaviour {
 
     #region Fields
-    private GameObject[] stations;      // Array of all the stations in the scene
-    public GameObject connectionGO;     // Gameobject which will be spawned as the line marker
-    private bool drawn = false;         // Have all lines been drawn
+                     private GameObject[] stations;      // Array of all the stations in the scene
+    [SerializeField] private GameObject connectionGO;     // Gameobject which will be spawned as the line marker
+                     private bool drawn = false;         // Have all lines been drawn
+                     public float countdown = 1.0f;      // Time to wait in seconds
+    [SerializeField] private stopConnection[] connections;
 
-    public float countdown = 1.0f;      // Time to wait in seconds
+    //               private static stopConnection[] buffer;
 
     #endregion Contains fields for this class
 
     // Use this for initialization
     void Start ()
     {
+        purge();
         stations = GameObject.FindGameObjectsWithTag("Station");
+        //connections = buffer;
     }
 
     /// <summary>
@@ -38,7 +42,8 @@ public class DrawConnections : MonoBehaviour {
         if (countdown <= 0.0f && !drawn)
         {
             //call method to draw connections
-            drawStationConnections();
+            //drawStationConnections();
+            drawStationConnectionsTwo();
             Debug.Log("Drawning Connections");
 
             // set has drawn all lines to true
@@ -48,6 +53,41 @@ public class DrawConnections : MonoBehaviour {
         {
             // end countdown
             countdown = 0.0f;
+        }
+    }
+
+    private void drawStationConnectionsTwo()
+    {
+        foreach (stopConnection c in connections)
+        {
+            // Legacy Support
+            c.stop1.addConnectingStop(c.stop2);
+            c.stop2.addConnectingStop(c.stop1);
+
+            Stop stop1 = c.stop1;
+            Stop stop2 = c.stop2;
+
+            // Find Midpoint betwwen station and stop
+            Vector3 midpoint = stop1.gameObject.transform.position + (stop2.gameObject.transform.position - stop1.gameObject.transform.position) / 2;
+
+            //Create connection MArker
+            var connMarker = (GameObject)Instantiate(connectionGO, midpoint, new Quaternion(0.0f, 0.0f, 0.0f, 0.0f));
+
+            //Create an array to hold positions of line
+            Vector3[] positions = new Vector3[] { stop1.gameObject.transform.position, stop2.gameObject.transform.position };
+
+            //set the positions of the line and colour
+            LineRenderer line = connMarker.GetComponent<LineRenderer>();
+            line.SetPositions(positions);
+            if (!(stop1.getStopColour() == Color.black))
+            {
+                line.material.color = stop1.getStopColour();
+            }
+            else
+            {
+                line.material.color = stop2.getStopColour();
+            }
+
         }
     }
 
@@ -86,9 +126,14 @@ public class DrawConnections : MonoBehaviour {
                     //set the positions of the line and colour
                     LineRenderer line = connMarker.GetComponent<LineRenderer>();
                     line.SetPositions(positions);
-                    //line.startColor = g.GetComponent<Stop>().getStopColour();
-                    //line.endColor = g.GetComponent<Stop>().getStopColour();
-                    line.material.color = g.GetComponent<Stop>().getStopColour();
+                    if (!(g.GetComponent<Stop>().getStopColour() == Color.black))
+                    {
+                        line.material.color = g.GetComponent<Stop>().getStopColour();
+                    }
+                    else
+                    {
+                        line.material.color = s.gameObject.GetComponent<Stop>().getStopColour();
+                    }
 
                     // set this stops line drawn value to true
                     linesDrawn[s] = true;
@@ -103,5 +148,56 @@ public class DrawConnections : MonoBehaviour {
 
 
     }
-	
+
+    #region Helper Methods
+
+    private static void purge()
+    {
+        GameObject[] clones = GameObject.FindGameObjectsWithTag("Lines");
+
+        foreach (GameObject g in clones)
+        {
+            DestroyImmediate(g);
+        }
+    }
+
+    #endregion
+
+    #region Testing
+
+    //public static void EditorSeeLines(stopConnection[] ListOfConnections, GameObject connectionGO)
+    //{
+    //    purge();
+
+    //    buffer = ListOfConnections;
+
+    //    foreach (stopConnection c in ListOfConnections)
+    //    {
+    //        Stop stop1 = c.stop1;
+    //        Stop stop2 = c.stop2;
+
+    //        // Find Midpoint betwwen station and stop
+    //        Vector3 midpoint = stop1.gameObject.transform.position + (stop2.gameObject.transform.position - stop1.gameObject.transform.position) / 2;
+
+    //        //Create connection MArker
+    //        var connMarker = (GameObject)Instantiate(connectionGO, midpoint, new Quaternion(0.0f, 0.0f, 0.0f, 0.0f));
+
+    //        //Create an array to hold positions of line
+    //        Vector3[] positions = new Vector3[] { stop1.gameObject.transform.position, stop2.gameObject.transform.position };
+
+    //        //set the positions of the line and colour
+    //        LineRenderer line = connMarker.GetComponent<LineRenderer>();
+    //        line.SetPositions(positions);
+    //        if (!(stop1.getStopColour() == Color.black))
+    //        {
+    //            line.material.color = stop1.getStopColour();
+    //        }
+    //        else
+    //        {
+    //            line.material.color = stop2.getStopColour();
+    //        }
+    //    }
+    //}
+
+    #endregion
 }

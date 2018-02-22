@@ -14,7 +14,7 @@ public abstract class Stop : MonoBehaviour {
 	// Serializing private fields allows them to be edited in the Inspector whilst retaining there visibility
 
 	[SerializeField] private Color stopColour;                                  // Colour of Stop        
-	[SerializeField] private Stop[] connectingStops;                            // Stops this stop connects to
+	[SerializeField] private List<Stop> connectingStops;                            // Stops this stop connects to
 	[SerializeField] private GameObject[] playersOnStop;                        // Players on this stop
 	public bool isStart;
 	public string stopName;                                                     // Name of the stop
@@ -162,7 +162,7 @@ public abstract class Stop : MonoBehaviour {
 
 	public Stop[] getConnectedStations()
 	{
-		return connectingStops;
+		return connectingStops.ToArray();
 	}
 
 	public Dictionary<Stop, bool> getLinesDrawn()
@@ -191,6 +191,18 @@ public abstract class Stop : MonoBehaviour {
 	{
 		LinesDrawn[stopToSet] = state;
 	}
+
+
+    public void setConnectedStops(List<Stop> connectingStops)
+    {
+        this.connectingStops = connectingStops;
+    }
+
+    public void addConnectingStop(Stop stopToAdd)
+    {
+        connectingStops.Add(stopToAdd);
+    }
+
 	#endregion
 
 	#region Debug Methods

@@ -16,5 +16,11 @@ public class StationSyncScript : MonoBehaviour
         this.GetComponentInChildren<Text>().text = this.GetComponent<Stop>().getStopName();
     }
 
+    void OnValidate()
+    {
+        this.GetComponentInChildren<Text>().text = this.GetComponent<Stop>().getStopName();
+
+    }
+
 
 }

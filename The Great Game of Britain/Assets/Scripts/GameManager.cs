@@ -141,7 +141,7 @@ public class GameManager : MonoBehaviour
 
     private void nextPlayerTurn()
     {
-        
+        players[currentplayer].GetComponent<PlayerController>().setTravels(0);
         players[currentplayer].GetComponent<PlayerController>().setEnableAnimation(false); //disables current player
         players[currentplayer].GetComponent<PlayerController>().controllerEnabled = false;
 		players [currentplayer].GetComponent<PlayerController> ().setisfirststation (true);

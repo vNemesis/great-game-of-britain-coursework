@@ -7,6 +7,7 @@ TagManager:
   - Main Canvas
   - Station
   - Manager
+  - Lines
   layers:
   - Default
   - TransparentFX
