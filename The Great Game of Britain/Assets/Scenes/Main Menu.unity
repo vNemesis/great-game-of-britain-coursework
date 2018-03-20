@@ -211,7 +211,6 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1223479954}
-  - {fileID: 1455062322}
   m_Father: {fileID: 389199815}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -316,7 +315,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 9295.021, y: -14412.18}
+  m_AnchoredPosition: {x: 9983.167, y: -16271.14}
   m_SizeDelta: {x: 0, y: 300}
   m_Pivot: {x: 0, y: 1}
 --- !u!1 &96483690
@@ -2159,7 +2158,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.61200005, y: 0.1828961}
   m_AnchorMax: {x: 1, y: 0.6365162}
-  m_AnchoredPosition: {x: -0.024975, y: 19.000015}
+  m_AnchoredPosition: {x: -0.024963379, y: 19.000015}
   m_SizeDelta: {x: -0.050018, y: -36}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &518750007
@@ -4614,7 +4613,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1155055464}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 728.69763, y: -297.20056, z: -1598.067}
+  m_LocalPosition: {x: 544.5916, y: -227.27614, z: -426.58435}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1899374865}
@@ -5019,37 +5018,19 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1.1
-  m_Text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras accumsan
-    orci at orci tempor porta. Suspendisse in turpis at arcu efficitur dapibus vitae
-    ac tortor. Ut in felis ac metus dictum condimentum quis id leo. Proin eu erat
-    at magna pellentesque rhoncus in sit amet turpis. Vestibulum eleifend fringilla
-    ipsum, non laoreet orci dapibus quis. Nunc ullamcorper turpis in leo feugiat,
-    eget ullamcorper quam pulvinar. Quisque malesuada convallis massa, quis egestas
-    tortor volutpat vel. In eu nunc posuere felis egestas maximus. In hac habitasse
-    platea dictumst. Ut auctor facilisis tempus. Etiam commodo, elit at molestie finibus,
-    lectus sapien volutpat turpis, non blandit nibh erat et diam. Nunc tempus felis
-    ante, in auctor nisi elementum sed. Suspendisse nulla tortor, ultrices in ultrices
-    id, euismod in odio. Praesent ultrices leo urna, quis placerat arcu pulvinar ac.
-    Quisque egestas scelerisque scelerisque. Quisque ipsum nibh, imperdiet sed vestibulum
-    eu, finibus ut sem.\r\n\r\nCras ac mi diam. Aliquam condimentum gravida hendrerit.
-    Mauris ac malesuada mauris. Vestibulum id lacus id orci scelerisque egestas. Pellentesque
-    consequat aliquet dolor, vel pulvinar lorem rhoncus ut. Maecenas vitae dui massa.
-    Nunc non odio vitae sapien pretium lobortis. In in finibus ante, non tincidunt
-    dui. Duis dolor lorem, ullamcorper ut ipsum eu, lacinia gravida risus. Proin vestibulum
-    justo tellus, tincidunt rhoncus quam vulputate in. Morbi id arcu faucibus, dictum
-    ante a, mollis tellus. Etiam venenatis a nulla ut fermentum. Donec a consectetur
-    odio, sit amet tincidunt erat. Sed eros massa, commodo egestas pulvinar sed, aliquam
-    non dolor. Integer condimentum orci ut elit consequat euismod. Maecenas condimentum
-    faucibus risus, non molestie purus sodales nec.\r\n\r\nSuspendisse sapien dui,
-    varius non nulla ac, sagittis commodo enim. Maecenas vehicula tortor at consequat
-    eleifend. Aliquam vel luctus orci, nec laoreet purus. Sed sollicitudin at risus
-    vitae rhoncus. Fusce viverra vulputate felis. Praesent dictum lorem a purus feugiat
-    eleifend. Nullam mattis sapien rhoncus dui pulvinar placerat. Phasellus et ornare
-    lacus, et facilisis erat. Vestibulum eu ex at velit faucibus lobortis. Orci varius
-    natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Interdum
-    et malesuada fames ac ante ipsum primis in faucibus. Vestibulum placerat quam
-    quis elit placerat, mattis sodales risus volutpat. Nulla finibus sollicitudin
-    est, id ultrices tortor euismod in. Donec in viverra tortor, nec euismod nisi."
+  m_Text: "Objective\nThe objective of the game is to visit all the places of interest
+    as dictated by the cards you are given at the beginning of the game. The first
+    player to visit all places of interest is the winner.\n\n\nSet up\n All figures
+    are placed on London which is starting point of the game.\nAt the beginning game
+    randomly generates 3 cards for each players. These three cards are places of interest
+    and first player who will visit all three destinations will win.\nEach player
+    is given 2 blockers at the beginning of the game to place on stations that they
+    think will hinder other players and give themselves an advantage during the game.
+    \n\nTo Move\nTo move, you must roll the dice and are allowed to travel for any
+    number of stations up to the number the dice has given. Upon reaching a station
+    of multiple colour you may not travel any further until your next turn. If you
+    are lucky and manage to roll a 6, this will temporarily disable blockers for your
+    turn only."
 --- !u!222 &1223479956
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -5959,74 +5940,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
---- !u!1 &1455062321
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 5
-  m_Component:
-  - component: {fileID: 1455062322}
-  - component: {fileID: 1455062324}
-  - component: {fileID: 1455062323}
-  m_Layer: 5
-  m_Name: Image
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!224 &1455062322
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1455062321}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 67516607}
-  m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 1}
-  m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 0, y: -729.5703}
-  m_SizeDelta: {x: 400, y: 225}
-  m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1455062323
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1455062321}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: -765806418, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
-      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: a407327864851ce4eb0994297782239b, type: 3}
-  m_Type: 0
-  m_PreserveAspect: 0
-  m_FillCenter: 1
-  m_FillMethod: 4
-  m_FillAmount: 1
-  m_FillClockwise: 1
-  m_FillOrigin: 0
---- !u!222 &1455062324
-CanvasRenderer:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1455062321}
 --- !u!1 &1494511100
 GameObject:
   m_ObjectHideFlags: 0
