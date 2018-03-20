@@ -8,6 +8,10 @@ TagManager:
   - Station
   - Manager
   - Lines
+  - Card Display
+  - Game Manager
+  - Travel Display
+  - Settings Manager
   layers:
   - Default
   - TransparentFX

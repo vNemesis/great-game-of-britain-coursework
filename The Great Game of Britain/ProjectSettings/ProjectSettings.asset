@@ -208,7 +208,6 @@ PlayerSettings:
   tvOSSmallIconLayers: []
   tvOSSmallIconLayers2x: []
   tvOSLargeIconLayers: []
-  tvOSLargeIconLayers2x: []
   tvOSTopShelfImageLayers: []
   tvOSTopShelfImageLayers2x: []
   tvOSTopShelfImageWideLayers: []
@@ -267,7 +266,7 @@ PlayerSettings:
       m_Icon: {fileID: 2800000, guid: 884d51448f508ba41a44535a291f3f0c, type: 3}
       m_Width: 128
       m_Height: 128
-      m_Kind: 0
+      m_Kind: 48879
   m_BuildTargetBatching: []
   m_BuildTargetGraphicsAPIs: []
   m_BuildTargetVRSettings: []
@@ -665,6 +664,8 @@ PlayerSettings:
   cloudServicesEnabled:
     Build: 1
     Collab: 1
+    ErrorHub: 0
+    Hub: 0
     UNet: 1
   facebookSdkVersion: 7.9.4
   apiCompatibilityLevel: 2

@@ -31,3 +31,7 @@ ehthumbs.db
 [Bb]uild
 sysinfo.txt
 *.stackdump
+
+# Unity generated
+# ===============
+Low Poly Water

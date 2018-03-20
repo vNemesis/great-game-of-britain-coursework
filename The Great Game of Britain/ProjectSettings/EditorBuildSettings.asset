@@ -9,8 +9,5 @@ EditorBuildSettings:
     path: Assets/Scenes/Main Menu.unity
     guid: 31ac740e6e5bb8b41961e3f83ffb008e
   - enabled: 1
-    path: Assets/Scenes/Test_Enviroment.unity
-    guid: c30358e587f8f304b91e2431b0cde46f
-  - enabled: 1
-    path: Assets/Scenes/EndGame_Scene.unity
-    guid: 74073a46fdf73ae4c83ab2e1529b5658
+    path: Assets/Scenes/HotseatGame.unity
+    guid: b338a1a7520c895488f9313702b55c28

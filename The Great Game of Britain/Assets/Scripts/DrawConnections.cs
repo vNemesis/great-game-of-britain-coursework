@@ -43,7 +43,7 @@ public class DrawConnections : MonoBehaviour {
         {
             //call method to draw connections
             //drawStationConnections();
-            drawStationConnectionsTwo();
+           drawStationConnectionsTwo();
             Debug.Log("Drawning Connections");
 
             // set has drawn all lines to true
@@ -93,6 +93,7 @@ public class DrawConnections : MonoBehaviour {
 
     /// <summary>
     /// Will go through every gameobject tagged "Station" and draw a line between its connection stops
+    /// ----------------------------- LEGACY DO NOT USE -----------------------------------
     /// </summary>
     private void drawStationConnections()
     {

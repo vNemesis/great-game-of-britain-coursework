@@ -4,17 +4,19 @@ using UnityEngine;
 
 public class DontDestroyOnLoad : MonoBehaviour {
 
-    public bool isAudioScript;
+    public static DontDestroyOnLoad instance;
 
-	// Use this for initialization
-	void Awake ()
+    void Awake()
     {
-        if (isAudioScript)
+        if (instance == null)
         {
-
+            instance = this;
+            DontDestroyOnLoad(gameObject);
         }
-
-        DontDestroyOnLoad(transform.gameObject);
-        Debug.Log("Will not destroy");
+        else if (instance != this)
+        {
+            Destroy(gameObject);
+        }
     }
+
 }
