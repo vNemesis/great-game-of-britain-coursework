@@ -2,3 +2,10 @@
 
 The Team:
 Harman Uppal
+Taris
+Matt
+Adilya
+Sope
+Jack
+Alex
+Chantay
