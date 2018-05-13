@@ -4,7 +4,7 @@ This is our submission for our Group Project CS module. We were tasked to create
 
 ## How It's Made ©
 
-We chose to develop in the Unity game engine, because it's hella powerful. We subsequently realized that we're not all git wiz-kids and collaboration was becoming a chose, so decided to use Unity's in-house *"Collab"* tool, hence the lack of a decent commit history.
+We chose to develop in the Unity game engine, because it's hella powerful. We subsequently realized that we're not all git wiz-kids and collaboration was becoming a chore, so decided to use Unity's in-house *"Collab"* tool, hence the lack of a decent commit history.
 
 Basically we were staring at screens for a few months, and then with the big deadline looming decided to do the work—it even didn't turn out too bad. We all kinda wish we picked something more inspiring though :grimacing:
 
