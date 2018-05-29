@@ -33,6 +33,11 @@ Here's a list to appreciate what more could be added and make us feel bad, but n
 * Interactive tutorial.
 * Probably need to fix a gazillion bugs.
 
+## Links
+* **Development blog** - http://www.tower16.co.uk/
+* **Live Demo** - https://harmanu.github.io/ggobweb/index.html
+
+
 ## License
 
 Let's say [No License](https://choosealicense.com/no-permission/) for now 'til further notice :broken_heart:
